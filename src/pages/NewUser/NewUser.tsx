@@ -20,7 +20,7 @@ const NewUser = ({ inputs, title }: NewProps) => {
     setUserInfo((prev) => ({ ...prev, [e.target.id]: e.target.value }));
   };
 
-  const handleSend  = async (e) => {
+  const handleSend = async (e) => {
     e.preventDefault();
 
     // Upload images to Cloudinary
