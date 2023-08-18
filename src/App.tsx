@@ -2,7 +2,6 @@ import React from 'react';
 import Home from './pages/Home/Home';
 import Login from './pages/Login/Login';
 import List from './pages/List/List';
-import Single from './pages/Single/Single';
 import NewUser from './pages/NewUser/NewUser';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { userInputs } from './formSource';
@@ -10,9 +9,17 @@ import styles from './style/dark.module.scss';
 import { useContext } from 'react';
 import { DarkModeContext } from './context/DarkModeContext';
 import { AuthContext } from './context/AuthContext';
-import { hotelColumns, roomColumns, userColumns } from './datatablesource';
+import {
+  formColumns,
+  hotelColumns,
+  roomColumns,
+  userColumns,
+} from './datatablesource';
 import NewHotel from './pages/NewHotel/NewHotel';
 import NewRoom from './pages/NewRoom/NewRoom';
+import SingleHotel from './pages/SingleHotel/SingleHotel';
+import SingleRoom from './pages/SingleRoom/SingleRoom';
+import SingleUser from './pages/SingleUser/SingleUser';
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -58,7 +65,7 @@ function App() {
                 path=":userId"
                 element={
                   <ProtectedRoute>
-                    <Single />
+                    <SingleUser />
                   </ProtectedRoute>
                 }
               />
@@ -81,10 +88,10 @@ function App() {
                 }
               />
               <Route
-                path=":productId"
+                path=":hotelId"
                 element={
                   <ProtectedRoute>
-                    <Single />
+                    <SingleHotel />
                   </ProtectedRoute>
                 }
               />
@@ -107,10 +114,10 @@ function App() {
                 }
               />
               <Route
-                path=":productId"
+                path=":roomId"
                 element={
                   <ProtectedRoute>
-                    <Single />
+                    <SingleRoom />
                   </ProtectedRoute>
                 }
               />
@@ -122,6 +129,24 @@ function App() {
                   </ProtectedRoute>
                 }
               />
+            </Route>
+            <Route path="forms">
+              <Route
+                index
+                element={
+                  <ProtectedRoute>
+                    <List columns={formColumns} />
+                  </ProtectedRoute>
+                }
+              />
+              {/* <Route
+                path=":formId"
+                element={
+                  <ProtectedRoute>
+                    <SingleHotel />
+                  </ProtectedRoute>
+                }
+              /> */}
             </Route>
           </Route>
         </Routes>

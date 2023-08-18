@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import styles from './Datatable.module.scss';
 import { DataGrid } from '@mui/x-data-grid';
-import { userColumns } from '../../datatablesource';
 import { Link, useLocation } from 'react-router-dom';
 import { useState } from 'react';
 import useFetch from '../../hooks/useFetch';
@@ -19,7 +18,7 @@ const Datatable = ({ columns }: DatatableProps) => {
   const path = location.pathname.split('/')[1];
 
   const [list, setList] = useState<User[] | Hotel[] | Room[]>([]);
-  const { data, loading, error } = useFetch<User[] | Hotel[] | Room[]>(
+  const { data, loading } = useFetch<User[] | Hotel[] | Room[]>(
     `${process.env.REACT_APP_API_ENDPOINT}/${path}`,
   );
 
@@ -44,8 +43,11 @@ const Datatable = ({ columns }: DatatableProps) => {
       renderCell: (params) => {
         return (
           <div className={styles['cellAction']}>
-            <Link to={`/${path}/test`} style={{ textDecoration: 'none' }}>
-              <div className="viewButton">View</div>
+            <Link
+              to={`/${path}/${params.id}`}
+              style={{ textDecoration: 'none' }}
+            >
+              <div className={styles['viewButton']}>View</div>
             </Link>
             <div
               className={styles['deleteButton']}
@@ -66,9 +68,11 @@ const Datatable = ({ columns }: DatatableProps) => {
         <>
           <div className={styles['datatableTitle']}>
             {path}
-            <Link to={`/${path}/new`} className={styles['link']}>
-              Add New
-            </Link>
+            {path !== 'forms' && (
+              <Link to={`/${path}/new`} className={styles['link']}>
+                Add New
+              </Link>
+            )}
           </div>
           <DataGrid
             className={styles['datagrid']}

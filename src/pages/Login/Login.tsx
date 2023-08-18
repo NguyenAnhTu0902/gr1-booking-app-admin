@@ -2,12 +2,11 @@ import axios from 'axios';
 import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
-import { axiosInstance } from '../../hooks/AxiosInstance';
 import styles from './Login.module.scss';
 
 const Login = () => {
   const [credentials, setCredentials] = useState({
-    username: '',
+    email: '',
     password: '',
   });
 
@@ -50,8 +49,8 @@ const Login = () => {
       <div className={styles['login__container']}>
         <input
           type="text"
-          placeholder="Username"
-          id="username"
+          placeholder="Email"
+          id="email"
           onChange={handleInputChange}
           className={styles['login__container__input']}
         />

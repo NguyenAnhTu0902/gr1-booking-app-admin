@@ -5,7 +5,7 @@ import Navbar from '../../components/Navbar/Navbar';
 import Widget from '../../components/Widget/Widget';
 import Featured from '../../components/Featured/Featured';
 import Chart from '../../components/Chart/Chart';
-import Table from '../../components/Table/Table';
+import Table from '../../components/Table/ListHotelRoom';
 
 const Home = () => {
   return (
@@ -15,9 +15,9 @@ const Home = () => {
         <Navbar />
         <div className={styles['widgets']}>
           <Widget type="user" />
-          <Widget type="order" />
-          <Widget type="earning" />
-          <Widget type="balance" />
+          <Widget type="hotel" />
+          <Widget type="room" />
+          <Widget type="form" />
         </div>
         <div className={styles['charts']}>
           <Featured />
